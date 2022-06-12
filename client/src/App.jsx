@@ -10,16 +10,15 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div>
-      <Box width="400px">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/exercise/:id" element={<ExerciseDetail />} />
-        </Routes>
-        <Footer />
-      </Box>
-    </div>
+    <Box width="400px" sx={{ width: { xl: "1488px" } }} m="auto">
+      {/* width: {xl: '1448px'}  to be responsive on large devices*/}
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/exercise/:id" element={<ExerciseDetail />} />
+      </Routes>
+      <Footer />
+    </Box>
   );
 }
 
