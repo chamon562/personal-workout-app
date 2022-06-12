@@ -1,6 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Italiana&family=Roboto&display=swap");
+
 body {
-  font-family: "Josefin Sans";
-  background-color: #fffafb;
+  font-family: "Roboto", sans-serif;
+  /* background-color: #e3f4f8; */
+  background: linear-gradient(to right, #e9f8ff, #90b2d8, #c1e3ff);
 }
 
 * {
