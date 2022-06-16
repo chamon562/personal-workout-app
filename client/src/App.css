@@ -3,7 +3,7 @@
 body {
   font-family: "Roboto", sans-serif;
   /* background-color: #e3f4f8; */
-  background: linear-gradient(to right, #e9f8ff, #90b2d8, #c1e3ff);
+  background: linear-gradient(to right, #e9f8ff, #c1e3ff);
 }
 
 * {
@@ -58,10 +58,12 @@ body {
 .hero-banner-img {
   position: absolute;
   right: 40px;
-  top: 0px;
-  width: 700px;
+  top: 40px;
   height: 900px;
   margin-top: -330px;
+  object-fit: contain;
+  transform: scaleX(-1);
+  border-radius: 80px 0 80px 0;
 }
 
 .exercise-card {
@@ -94,8 +96,8 @@ body {
 }
 
 .search-btn:hover {
-  color: #ff2625 !important;
-  border: 1px solid #ff2625 !important;
+  color: #5dbae8 !important;
+  border: 1px solid #5dbae8 !important;
 }
 
 .exercise-video {
