@@ -1,7 +1,13 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Box, Stack, Typography, Button } from "@mui/material";
 import HeroBannerImg from "../assets/images/bannerImage.jpeg";
+
+
+
+
 const HeroBanner = () => {
+
+
   return (
     <Box
       sx={{
