@@ -2,12 +2,26 @@ import React, { useEffect, useState } from "react";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 
 import { exerciseOptions, fetchData } from "../utils/fetchData";
+import HorizontalScrollbar from "./HorizontalScrollbar";
 
-const SearchExercises = () => {
+const SearchExercises = ({setExercises, bodyPart, setBodyPart}) => {
   // bory parts url: https://exercisedb.p.rapidapi.com/exercises/bodyPartList
   // over 1k + exercsies url:"https://exercisedb.p.rapidapi.com/exercises",
 
   const [search, setSearch] = useState("");
+  const [bodyParts, setBodyParts] = useState([]);
+
+  useEffect(() => {
+    const fetchExercisesData = async () => {
+      // get data about all body parts
+      const bodyPartsData = await fetchData(
+        "https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
+        exerciseOptions
+      );
+      setBodyParts(["all", ...bodyPartsData]);
+    };
+    fetchExercisesData();
+  }, []);
 
   // this search will be asynchronous because we are going to be fetchign data form it
   // its going to take some time to pull some data from the api
@@ -21,6 +35,18 @@ const SearchExercises = () => {
       console.log(exerciseData);
       // create fetch data utility function
       // create utils folder and this will be the folder that stores functions to be used across the code
+      // inside the filter we pass in a callback function where we get each exercise and
+      // check if exercise.name set it toLowerCase() . includes the search term
+      // add searchedExercises to state
+      const searchedExercises = exerciseData.filter(
+        (exercise) =>
+          exercise.name.toLowerCase().includes(search) ||
+          exercise.bodyPart.toLowerCase().includes(search) ||
+          exercise.equipment.toLowerCase().includes(search) ||
+          exercise.target.toLowerCase().includes(search)
+      );
+      setSearch("");
+      setExercises(searchedExercises);
     }
   };
   return (
@@ -67,6 +93,13 @@ const SearchExercises = () => {
         >
           Search
         </Button>
+      </Box>
+      {/* bodyPartsData cards inside HorizontalScrollbar */}
+      <Box
+      sx={{position: 'relative', width: '100%', p: '20px'}}
+      >
+      <HorizontalScrollbar data={bodyParts} bodyPart={bodyPart} setBodyPart={setBodyPart}/>
+
       </Box>
     </Stack>
   );
