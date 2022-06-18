@@ -94,7 +94,12 @@ body {
 .bodyPart-card:hover {
   transform: scale(1.1, 1.1);
 }
-
+/* .exercise-btn {
+  transition: 0.5s ease-in-out !important;
+}
+.exercise-btn:hover {
+  background: black !important;
+} */
 .search-btn:hover {
   color: #5dbae8 !important;
   border: 1px solid #5dbae8 !important;

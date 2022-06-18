@@ -11,3 +11,8 @@ My React personal workout app
 ## Material UI Stack component
 - used in Navbar
 - The Stack component manages alyout of immediate children along the vertical and horizontal axis with optional spaciing and/or dividers between each child
+
+
+## error
+- error: "You should provide at least \"query\" or \"next\" parameter"
+[[Prototype]]: Object
