@@ -108,10 +108,10 @@ body {
 .exercise-video {
   display: flex;
   flex-direction: column;
-  gap: 24px;
   width: 387px;
   height: 381px;
   text-decoration: none;
+  justify-content: space-around;
 }
 
 @media screen and (max-width: 1200px) {

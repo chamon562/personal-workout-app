@@ -17,6 +17,9 @@ import SimliarExercises from "../components/SimliarExercises";
 const ExerciseDetails = () => {
   const [exerciseDetail, setExerciseDetail] = useState({});
   const [exerciseVideos, setExerciseVideos] = useState([]);
+  const [targetMuscleExercises, setTargetMuscleExercises] = useState([]);
+  const [equipmentExercises, setEquipmentExercises] = useState([]);
+
   // this will give us access to the number in the url when users click a specific workout
   const { id } = useParams();
 
@@ -40,15 +43,35 @@ const ExerciseDetails = () => {
         youtubeOptions
       );
       setExerciseVideos(exerciseVideosData.contents);
+
+      const targetMuscleExerciseData = await fetchData(
+        `${exerciseDBUrl}/exercises/target/${exerciseDetail.target}`,
+        exerciseOptions
+      );
+      setTargetMuscleExercises(targetMuscleExerciseData);
+
+      const equipmentExerciseData = await fetchData(
+        `${exerciseDBUrl}/exercises/equipment/${exerciseDetail.equipment}`,
+        exerciseOptions
+      );
+
+      setEquipmentExercises(equipmentExerciseData);
     };
     fetchExercisesData();
   }, [id]);
   console.log(exerciseVideos);
+
   return (
     <Box>
       <Detail exerciseDetail={exerciseDetail} />
-      <ExerciseVideos exerciseVideos={exerciseVideos} name={exerciseDetail.name} />
-      <SimliarExercises />
+      <ExerciseVideos
+        exerciseVideos={exerciseVideos}
+        name={exerciseDetail.name}
+      />
+      <SimliarExercises
+        targetMuscleExercises={targetMuscleExercises}
+        equipmentExercises={equipmentExercises}
+      />
     </Box>
   );
 };

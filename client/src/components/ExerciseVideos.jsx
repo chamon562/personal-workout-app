@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Stack, Typography } from "@mui/material";
+import ReactPlayer from "react-player/youtube";
 
 const ExerciseVideos = ({ exerciseVideos, name }) => {
   if (!exerciseVideos.length) return <div>Loading...</div>;
@@ -15,7 +16,6 @@ const ExerciseVideos = ({ exerciseVideos, name }) => {
       </Typography>
       {/* loop over exercise videos create a stack */}
       <Stack
-        justifyContent="flex-start"
         flexWrap="wrap"
         alignItems="center"
         sx={{
@@ -24,30 +24,36 @@ const ExerciseVideos = ({ exerciseVideos, name }) => {
         }}
       >
         {exerciseVideos?.slice(0, 6).map((item, index) => (
-          <a
+          // <a
+          //   key={index}
+          //   className="exercise-video"
+          //   href={`https://www.youtube.com/watch?v=${item.video.videoId}`}
+          //   target="_blank"
+          //   rel="noreferrer"
+          // >
+          <Box
             key={index}
-            className="exercise-video"
-            href={`https://www.youtube.com/watch?v=${item.video.videoId}`}
-            target="_blank"
-            rel="noreferrer"
+            sx={{
+              backgroundColor: "#ffffff",
+              borderRadius: "5px",
+            }}
           >
-            <img
-              style={{
-                border: "5px solid rgb(93, 186, 232)",
-                borderRadius: "10px",
-              }}
-              src={item.video.thumbnails[0].url}
-              alt={item.video.title}
+            <ReactPlayer
+              key={index}
+              className="exercise-video"
+              controls="true"
+              url={`https://www.youtube.com/watch?v=${item.video.videoId}`}
             />
             <Box>
-              <Typography variant="h5" color="#000">
+              <Typography variant="h5" color="#000" m="0 10px 5px">
                 {item.video.title}
               </Typography>
-              <Typography variant="h6" color="#000">
+              <Typography variant="h8" color="#000"  m="0 10px">
                 {item.video.channelName}
               </Typography>
             </Box>
-          </a>
+          </Box>
+          // </a>
         ))}
       </Stack>
     </Box>
